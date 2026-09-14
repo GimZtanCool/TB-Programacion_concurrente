@@ -64,7 +64,6 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 ## 📁 4. Estructura del Repositorio
 
 ```text
-├── CC65_PCs_TP-202620.pdf          # Pautas y rúbrica oficial del curso
 ├── limpieza_paysim_fraud.ipynb     # Notebook con EDA, limpieza y exportación
 ├── paysim.csv                      # Dataset masivo (>6.36M filas, Git LFS)
 ├── data-limpia/                    # Muestras y salidas del preprocesamiento
@@ -72,5 +71,6 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 │   ├── y_train_sample.csv          # Vector de etiquetas de entrenamiento
 │   └── y_test_sample.csv           # Vector de etiquetas de prueba
 ├── .gitattributes                  # Filtros de Git LFS para paysim.csv
+├── .gitignore                      # Configuración de exclusión de Git
 └── README.md                       # Documentación del proyecto
 ```
