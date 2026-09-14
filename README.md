@@ -5,7 +5,7 @@ Repositorio del proyecto del curso **Programación Concurrente y Distribuida (CC
 
 ---
 
-## 📌 1. Contexto y Objetivos del Proyecto
+## 1. Contexto y Objetivos del Proyecto
 
 El fraude en transacciones electrónicas representa pérdidas multimillonarias anuales a nivel global y vulnera la confianza en la infraestructura financiera digital. Los objetivos del proyecto son:
 1. **Analizar y preprocesar** un conjunto de datos masivo (>6.3 millones de transacciones con variables financieras, contables y temporales) garantizando consistencia, balanceo y escalabilidad.
@@ -19,7 +19,7 @@ El fraude en transacciones electrónicas representa pérdidas multimillonarias a
 
 ---
 
-## 📊 2. Dataset Seleccionado: Synthetic Financial Datasets For Fraud Detection (PaySim1)
+## 2. Dataset Seleccionado: Synthetic Financial Datasets For Fraud Detection (PaySim1)
 
 El dataset seleccionado corresponde a **PaySim1**, un simulador financiero basado en datos transaccionales reales de servicios móviles de dinero:
 * **Fuente:** [PaySim1 en Kaggle](https://www.kaggle.com/datasets/ealaxi/paysim1)
@@ -30,7 +30,7 @@ El dataset seleccionado corresponde a **PaySim1**, un simulador financiero basad
 
 ---
 
-## 🛠️ 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim_fraud.ipynb`)
+## 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim_fraud.ipynb`)
 
 El procedimiento implementado en el notebook sigue un flujo estricto y reproducible:
 
@@ -61,7 +61,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 
 ---
 
-## 📁 4. Estructura del Repositorio
+## 4. Estructura del Repositorio
 
 ```text
 ├── limpieza_paysim_fraud.ipynb     # Notebook con EDA, limpieza y exportación
