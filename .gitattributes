@@ -1,3 +1,1 @@
-sample_submission.csv filter=lfs diff=lfs merge=lfs -text
-train_identity.csv filter=lfs diff=lfs merge=lfs -text
-train_transaction.csv filter=lfs diff=lfs merge=lfs -text
+paysim.csv filter=lfs diff=lfs merge=lfs -text
