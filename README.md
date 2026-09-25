@@ -79,7 +79,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 
 ## PC2: Implementation, formal model and evaluation
 
-The complete implementation and reproduction instructions are in [pc2/](pc2/README.md). The integrated team report is available as [CC65-PC2-202620-Equipo.pdf](output/pdf/CC65-PC2-202620-Equipo.pdf); benchmark observations are in [pc2/results.csv](pc2/results.csv).
+The complete implementation, report, and reproduction instructions are in [pc2/](pc2/README.md). Benchmark observations are in [pc2/results.csv](pc2/results.csv).
 
 | Configuration | Trimmed mean (ms) | Speedup |
 | --- | ---: | ---: |

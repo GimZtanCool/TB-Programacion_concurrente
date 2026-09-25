@@ -1,5 +1,7 @@
 # PC2 - PaySim weighted logistic regression
 
+Integrated team report: [`CC65-PC2-202620-Equipo.pdf`](CC65-PC2-202620-Equipo.pdf).
+
 ## Reproduce
 
 From this directory, with Go installed:

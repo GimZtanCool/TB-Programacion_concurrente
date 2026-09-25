@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import html
-import re
+import tempfile
 import textwrap
 from pathlib import Path
 
@@ -35,13 +35,10 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PC2 = Path(__file__).resolve().parent
-OLD_MD = ROOT / "CC65-PC1-202620.md"
 OLD_PDF = ROOT / "CC65-PC1-202620.pdf"
 PC2_MD = PC2 / "INFORME_PC2.md"
-TEAM_MD = ROOT / "CC65-PC2-202620-Equipo.md"
-OUTPUT_DIR = ROOT / "output" / "pdf"
-FINAL_PDF = OUTPUT_DIR / "CC65-PC2-202620-Equipo.pdf"
-TMP_DIR = ROOT / "tmp" / "pdfs"
+FINAL_PDF = PC2 / "CC65-PC2-202620-Equipo.pdf"
+TMP_DIR = Path(tempfile.gettempdir())
 APPENDIX_PDF = TMP_DIR / "pc2-appendix.pdf"
 FRONT_PDF = TMP_DIR / "pc2-front.pdf"
 EVIDENCE_PNG = PC2 / "evidence_execution.png"
@@ -215,29 +212,6 @@ def make_front(appendix_pages: int):
     front.close()
 
 
-def update_markdown_source():
-    source = OLD_MD.read_text(encoding="utf-8")
-    source = source.replace("\nTB1\n", "\nPC2\n", 1)
-    source = source.replace("9,615,000 USD", "22,919,326.54 USD")
-    source = source.replace("5,651 fraudes", "3,959 fraudes")
-    source = source.replace("2,562", "4,254")
-    source = source.replace("14 variables predictoras", "15 variables predictoras")
-    source = source.replace("7. Referencias", "8. Referencias")
-    toc_start = source.find("Indice\n")
-    summary_start = source.find("\n1. Resumen del trabajo\nEl presente trabajo", toc_start)
-    if toc_start >= 0 and summary_start > toc_start:
-        toc = "Indice\n1. Resumen del trabajo\n2. Objetivos del trabajo\n3. Investigación bibliográfica\n4. Análisis del caso de uso\n5. Limpieza y preprocesamiento\n6. Repositorio e historial Git\n7. PC2: modelo, implementación y evaluación\n8. Referencias\n"
-        source = source[:toc_start] + toc + source[summary_start:]
-    ref_heading = "8. Referencias."
-    at = source.rfind(ref_heading)
-    if at < 0:
-        raise RuntimeError("could not locate reference section in the PC1 Markdown")
-    pc2 = PC2_MD.read_text(encoding="utf-8")
-    pc2 = pc2.replace("](evidence_execution.png)", "](pc2/evidence_execution.png)")
-    source = source[:at] + pc2 + "\n\n" + source[at:]
-    TEAM_MD.write_text(source, encoding="utf-8")
-
-
 def create_evidence_image():
     bench = (PC2 / "benchmark.log").read_text(encoding="utf-16").splitlines()
     evaluation = (PC2 / "evaluation.log").read_text(encoding="utf-16").splitlines()
@@ -300,22 +274,24 @@ def assemble_pdf(appendix_pages: int):
                     ref_page.insert_text((box.x0, box.y1 - 2), "8. Referencias.", fontsize=span["size"], fontname="helv", color=(0, 0, 0))
                     break
     final.set_metadata({"title": "CC65-PC2-202620 - Detección concurrente de fraude en PaySim1", "author": "Equipo CC65", "subject": "Informe integrado PC1 y PC2"})
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    PC2.mkdir(parents=True, exist_ok=True)
     final.save(str(FINAL_PDF), garbage=4, deflate=True)
     final.close(); appendix.close(); front.close(); old.close()
 
 
 def main():
-    TMP_DIR.mkdir(parents=True, exist_ok=True)
-    update_markdown_source()
     create_evidence_image()
-    make_appendix()
-    appendix = fitz.open(str(APPENDIX_PDF))
-    appendix_pages = len(appendix)
-    appendix.close()
-    assemble_pdf(appendix_pages)
-    print(f"Created {TEAM_MD}")
-    print(f"Created {FINAL_PDF} with {appendix_pages} PC2 pages")
+    global TMP_DIR, APPENDIX_PDF, FRONT_PDF
+    with tempfile.TemporaryDirectory(prefix="cc65-pc2-report-") as scratch:
+        TMP_DIR = Path(scratch)
+        APPENDIX_PDF = TMP_DIR / "pc2-appendix.pdf"
+        FRONT_PDF = TMP_DIR / "pc2-front.pdf"
+        make_appendix()
+        appendix = fitz.open(str(APPENDIX_PDF))
+        appendix_pages = len(appendix)
+        appendix.close()
+        assemble_pdf(appendix_pages)
+        print(f"Created {FINAL_PDF} with {appendix_pages} PC2 pages")
 
 
 if __name__ == "__main__":
