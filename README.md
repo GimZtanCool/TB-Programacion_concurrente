@@ -42,7 +42,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
    * Extracción de semántica del destinatario: nueva variable `dest_type` (`C` = Cliente particular, `M` = Comercio).
    * Eliminación de la bandera estática `isFlaggedFraud` (que sólo detectaba el 0.19% de los fraudes reales).
 3. **Tratamiento de Valores Atípicos (*Outliers*):**
-   * Recorte (*winsorizing*) sobre `amount` en el percentil 99.99 ($9,615,000 USD), mitigando inestabilidad numérica en gradientes.
+   * Recorte (*winsorizing*) sobre `amount` en el percentil 99.99 ($22,919,326.54 USD), mitigando inestabilidad numérica en gradientes.
 4. **Ingeniería de Características (*Feature Engineering*):**
    * **Discrepancias contables:** Cálculo de balances esperados vs reales:
      $$\text{errorBalanceOrig} = \text{newbalanceOrig} + \text{amount} - \text{oldbalanceOrg}$$
@@ -57,7 +57,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 7. **División Cronológica y Estandarización:**
    * Ordenamiento temporal estricto por `step`.
    * Split 80/20: **5,090,096 transacciones de entrenamiento** y **1,272,524 de prueba**, previniendo fuga de datos temporal (*temporal data leakage*).
-   * Estandarización `StandardScaler` ajustada sobre entrenamiento y aplicada a prueba sobre las **14 variables predictoras finales**.
+   * Estandarización `StandardScaler` ajustada sobre entrenamiento y aplicada a prueba sobre las **15 variables predictoras finales**.
 
 ---
 
@@ -74,3 +74,16 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 ├── .gitignore                      # Configuración de exclusión de Git
 └── README.md                       # Documentación del proyecto
 ```
+
+---
+
+## PC2: Implementation, formal model and evaluation
+
+The complete implementation and reproduction instructions are in [pc2/](pc2/README.md). The integrated team report is available as [CC65-PC2-202620-Equipo.pdf](output/pdf/CC65-PC2-202620-Equipo.pdf); benchmark observations are in [pc2/results.csv](pc2/results.csv).
+
+| Configuration | Trimmed mean (ms) | Speedup |
+| --- | ---: | ---: |
+| Sequential | 263.355 | 1.000x |
+| Worker pool, 2 | 135.617 | 1.942x |
+| Worker pool, 4 | 69.375 | 3.796x |
+| Worker pool, 8 | 39.880 | 6.604x |
