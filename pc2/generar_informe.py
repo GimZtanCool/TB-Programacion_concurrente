@@ -37,11 +37,11 @@ ROOT = Path(__file__).resolve().parents[1]
 PC2 = Path(__file__).resolve().parent
 OLD_PDF = ROOT / "CC65-PC1-202620.pdf"
 PC2_MD = PC2 / "INFORME_PC2.md"
-FINAL_PDF = PC2 / "CC65-PC2-202620-Equipo.pdf"
+FINAL_PDF = PC2 / "Informe_CC65-PC2-202620_Equipo.pdf"
 TMP_DIR = Path(tempfile.gettempdir())
 APPENDIX_PDF = TMP_DIR / "pc2-appendix.pdf"
 FRONT_PDF = TMP_DIR / "pc2-front.pdf"
-EVIDENCE_PNG = PC2 / "evidence_execution.png"
+EVIDENCE_PNG = PC2 / "evidencia_ejecucion.png"
 
 
 def register_fonts() -> tuple[str, str, str]:
@@ -213,8 +213,8 @@ def make_front(appendix_pages: int):
 
 
 def create_evidence_image():
-    bench = (PC2 / "benchmark.log").read_text(encoding="utf-16").splitlines()
-    evaluation = (PC2 / "evaluation.log").read_text(encoding="utf-16").splitlines()
+    bench = (PC2 / "registro_rendimiento.txt").read_text(encoding="utf-16").splitlines()
+    evaluation = (PC2 / "registro_evaluacion.txt").read_text(encoding="utf-16").splitlines()
     summary = [line for line in bench if "trimmed_mean_10pct=" in line]
     resource = next((line for line in bench if line.startswith("Wrote raw observations")), "")
     dataset_lines = [line for line in bench if line.startswith(("Dataset:", "Training frauds:", "Benchmark:"))]

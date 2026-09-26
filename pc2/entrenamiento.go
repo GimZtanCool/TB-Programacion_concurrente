@@ -52,7 +52,7 @@ func main() {
 	epochs := flag.Int("epochs", 5, "training epochs for evaluation")
 	benchEpochs := flag.Int("bench-epochs", 1, "epochs per timed benchmark")
 	workersArg := flag.String("workers", "", "comma-separated worker counts; default 1,2,4,NumCPU")
-	outPath := flag.String("out", "results.csv", "benchmark CSV output path")
+	outPath := flag.String("out", "mediciones.csv", "benchmark CSV output path")
 	flag.Parse()
 
 	data, err := loadDataset(*path)

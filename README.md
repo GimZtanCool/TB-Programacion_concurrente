@@ -30,7 +30,7 @@ El dataset seleccionado corresponde a **PaySim1**, un simulador financiero basad
 
 ---
 
-## 🛠️ 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim_fraud.ipynb`)
+## 🛠️ 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim.ipynb`)
 
 El procedimiento implementado en el notebook sigue un flujo estricto y reproducible:
 
@@ -64,7 +64,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 ## 📁 4. Estructura del Repositorio
 
 ```text
-├── limpieza_paysim_fraud.ipynb     # Notebook con EDA, limpieza y exportación
+├── limpieza_paysim.ipynb     # Notebook con EDA, limpieza y exportación
 ├── paysim.csv                      # Dataset masivo (>6.36M filas, Git LFS)
 ├── data-limpia/                    # Muestras y salidas del preprocesamiento
 │   ├── paysim_sample_50k.csv       # Muestra de 50,000 registros procesados
@@ -77,13 +77,13 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 
 ---
 
-## PC2: Implementation, formal model and evaluation
+## PC2: modelo, implementación y evaluación
 
-The complete implementation, report, and reproduction instructions are in [pc2/](pc2/README.md). Benchmark observations are in [pc2/results.csv](pc2/results.csv).
+La implementación y las instrucciones para reproducir los resultados están en [pc2/](pc2/LEEME.md). Las mediciones individuales están en [pc2/mediciones.csv](pc2/mediciones.csv). El informe integrado se conserva localmente y está excluido de GitHub.
 
-| Configuration | Trimmed mean (ms) | Speedup |
+| Configuración | Media recortada (ms) | Aceleración |
 | --- | ---: | ---: |
-| Sequential | 263.355 | 1.000x |
-| Worker pool, 2 | 135.617 | 1.942x |
-| Worker pool, 4 | 69.375 | 3.796x |
-| Worker pool, 8 | 39.880 | 6.604x |
+| Secuencial | 263.355 | 1.000x |
+| Grupo de workers, 2 | 135.617 | 1.942x |
+| Grupo de workers, 4 | 69.375 | 3.796x |
+| Grupo de workers, 8 | 39.880 | 6.604x |
