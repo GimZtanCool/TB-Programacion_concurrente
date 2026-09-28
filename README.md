@@ -30,11 +30,7 @@ El dataset seleccionado corresponde a **PaySim1**, un simulador financiero basad
 
 ---
 
-<<<<<<< HEAD
 ## 🛠️ 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim.ipynb`)
-=======
-## 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim_fraud.ipynb`)
->>>>>>> origin/main
 
 El procedimiento implementado en el notebook sigue un flujo estricto y reproducible:
 
