@@ -1,0 +1,9 @@
+case,workers,check,errors,states_stored,depth,status
+w1_safety,1,safety,0,78,47,complete
+w1_liveness,1,liveness,0,73,78,complete
+w2_safety,2,safety,0,1084,69,complete
+w2_liveness,2,liveness,0,1075,117,complete
+w3_safety,3,safety,0,47796,91,complete
+w3_liveness,3,liveness,0,47765,156,complete
+control_escritura,2,safety,1,892,75,counterexample_expected
+control_espera,2,safety,1,37,45,counterexample_expected

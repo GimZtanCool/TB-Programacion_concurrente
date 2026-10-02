@@ -1,0 +1,3 @@
+fork/exec C:\Users\Daniel\AppData\Local\Temp\go-build713992370\b001\pc2.test.exe: An Application Control policy has blocked this file.
+FAIL	cc65/pc2	1.782s
+FAIL

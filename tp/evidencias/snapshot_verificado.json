@@ -1,0 +1,40 @@
+{
+  "technical_commit": "ea6baa3f3dab0f3aa4b5b359c4d9031c586c8b44",
+  "verification_date": "2026-10-01",
+  "document_finalization_date": "2026-10-02",
+  "files": [
+    {
+      "file": "pc2/entrenamiento.go",
+      "sha256": "0c50ef5208cdce1851988bef4cb56d2472cd876dc0c81abcc18f750f9a5e2e93"
+    },
+    {
+      "file": "pc2/entrenamiento_test.go",
+      "sha256": "250834d9063aa26d928a2d6bdb1b145111bd19b70ea0dbfc16da4b654e15da1b"
+    },
+    {
+      "file": "pc2/tiempo_cpu_windows.go",
+      "sha256": "4a00817694abe495414b83377169f26101f52848a7d5e8852e631b08d0c105cf"
+    },
+    {
+      "file": "pc2/tiempo_cpu_otros.go",
+      "sha256": "5af448d7111126b863deadfbe652b474cffb2bc4d0dc4e183920f82a1011032e"
+    },
+    {
+      "file": "pc2/go.mod",
+      "sha256": "8b062a7fbd6e22c5f48dfa0c919d19df9439b375d3d93bc145cf30f5e4a6a7fd"
+    },
+    {
+      "file": "tp/modelo_tp.pml",
+      "sha256": "9e2632fcd70ff7094c0f611290ac7e3f4fe377f3a1fdca0b7224d26e60671e6a"
+    },
+    {
+      "file": "tp/verificar_spin.py",
+      "sha256": "ef64bf072b0968b0ef45cf1d06e67a1c4de2d014e331c428aeaa35f511bc5c5e"
+    },
+    {
+      "file": "tp/Dockerfile",
+      "sha256": "f67ad8ee4188205ba625e69c888d2f8779e727920de49af52da5e16aa65fb9cb"
+    }
+  ],
+  "notes": "Raw working-file hashes; line-ending conversion may change SHA256 after checkout. Source review and Go corrections in b60c590; final model in ea6baa3."
+}

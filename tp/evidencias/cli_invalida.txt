@@ -1,0 +1,8 @@
+go : fork/exec C:\Users\Daniel\AppData\Local\Temp\go-build685730465\b001\exe\pc2.exe: An Application Control policy 
+has blocked this file.
+At line:2 char:1
++ go run . -input nonexistent.csv -mode invalid 2>&1 | Tee-Object -File ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fork/exec C:\Us...cked this file.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

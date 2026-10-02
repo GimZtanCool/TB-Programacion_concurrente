@@ -14,3 +14,9 @@ tp/.build/
 tp/*.exe
 .ai-prep/
 .ai-prepignore
+# Preparación interna del TP: conservar localmente, sin publicar.
+tp/GUION_VIDEO.md
+tp/CONTROL_ENTREGA.md
+tp/generar_informe.py
+tp/toc_pages.json
+tp/PROMPT_IA.md
