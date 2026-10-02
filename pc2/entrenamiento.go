@@ -10,6 +10,7 @@ import (
 	"io"
 	"math"
 	"os"
+	"path/filepath"
 	"runtime"
 	"sort"
 	"strconv"
@@ -54,6 +55,28 @@ func main() {
 	workersArg := flag.String("workers", "", "comma-separated worker counts; default 1,2,4,NumCPU")
 	outPath := flag.String("out", "mediciones.csv", "benchmark CSV output path")
 	flag.Parse()
+	// Reject invalid CLI options before the expensive three-pass dataset load.
+	var workers []int
+	var err error
+	switch *mode {
+	case "bench":
+		if *repeats < 1 || *benchEpochs < 1 {
+			fatal(errors.New("repeats and bench-epochs must be positive"))
+		}
+		workers, err = parseWorkers(*workersArg)
+		if err != nil {
+			fatal(err)
+		}
+		if err := validateOutputPath(*path, *outPath); err != nil {
+			fatal(err)
+		}
+	case "evaluate":
+		if *epochs < 1 {
+			fatal(errors.New("epochs must be positive"))
+		}
+	default:
+		fatal(fmt.Errorf("unknown mode %q (use bench or evaluate)", *mode))
+	}
 
 	data, err := loadDataset(*path)
 	if err != nil {
@@ -65,26 +88,36 @@ func main() {
 
 	switch *mode {
 	case "bench":
-		if *repeats < 1 || *benchEpochs < 1 {
-			fatal(errors.New("repeats and bench-epochs must be positive"))
-		}
-		workers, err := parseWorkers(*workersArg)
-		if err != nil {
-			fatal(err)
-		}
 		if err := runBench(data, workers, *repeats, *benchEpochs, *outPath); err != nil {
 			fatal(err)
 		}
 	case "evaluate":
-		if *epochs < 1 {
-			fatal(errors.New("epochs must be positive"))
-		}
 		if err := evaluate(data, *epochs); err != nil {
 			fatal(err)
 		}
-	default:
-		fatal(fmt.Errorf("unknown mode %q (use bench or evaluate)", *mode))
 	}
+}
+
+// Protect the source CSV even when output names it through a link or alias.
+func validateOutputPath(input, output string) error {
+	in, err := filepath.Abs(input)
+	if err != nil {
+		return err
+	}
+	out, err := filepath.Abs(output)
+	if err != nil {
+		return err
+	}
+	same := in == out || (runtime.GOOS == "windows" && strings.EqualFold(in, out))
+	inInfo, inErr := os.Stat(in)
+	outInfo, outErr := os.Stat(out)
+	if inErr == nil && outErr == nil {
+		same = same || os.SameFile(inInfo, outInfo)
+	}
+	if same {
+		return errors.New("benchmark output must not overwrite the input CSV")
+	}
+	return nil
 }
 
 func parseWorkers(s string) ([]int, error) {
@@ -152,6 +185,9 @@ func readHeader(path string) ([]string, map[string]int, error) {
 	}
 	idx := make(map[string]int, len(h))
 	for i, name := range h {
+		if _, exists := idx[name]; exists {
+			return nil, nil, fmt.Errorf("duplicate CSV column %q", name)
+		}
 		idx[name] = i
 	}
 	for _, required := range []string{"step", "type", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", "nameDest", "isFraud"} {
@@ -163,7 +199,21 @@ func readHeader(path string) ([]string, map[string]int, error) {
 }
 
 func parseRow(rec []string, idx map[string]int) (csvRow, error) {
-	getFloat := func(k string) (float64, error) { return strconv.ParseFloat(rec[idx[k]], 64) }
+	for name, i := range idx {
+		if i < 0 || i >= len(rec) {
+			return csvRow{}, fmt.Errorf("CSV row is missing column %q", name)
+		}
+	}
+	getFloat := func(k string) (float64, error) {
+		v, err := strconv.ParseFloat(rec[idx[k]], 64)
+		if err != nil || math.IsNaN(v) || math.IsInf(v, 0) {
+			return 0, fmt.Errorf("invalid finite number for %s: %q", k, rec[idx[k]])
+		}
+		if v < 0 || (k == "step" && math.Trunc(v) != v) {
+			return 0, fmt.Errorf("invalid nonnegative value for %s: %q", k, rec[idx[k]])
+		}
+		return v, nil
+	}
 	var x csvRow
 	var err error
 	if x.step, err = getFloat("step"); err != nil {
@@ -190,11 +240,19 @@ func parseRow(rec []string, idx map[string]int) (csvRow, error) {
 	}
 	x.y = uint8(label)
 	x.typ = rec[idx["type"]]
+	switch x.typ {
+	case "CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER":
+	default:
+		return x, fmt.Errorf("unknown transaction type %q", x.typ)
+	}
 	nameDest := rec[idx["nameDest"]]
 	if len(nameDest) == 0 {
 		return x, errors.New("empty nameDest")
 	}
 	x.destType = nameDest[:1]
+	if x.destType != "C" && x.destType != "M" {
+		return x, fmt.Errorf("unknown destination prefix %q", x.destType)
+	}
 	return x, nil
 }
 

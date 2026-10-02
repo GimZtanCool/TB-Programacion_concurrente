@@ -8,3 +8,7 @@ pc2/evidencia_ejecucion.png
 __pycache__/
 *.pyc
 pc2/*.exe
+.tools/
+tp/.qa/
+tp/.build/
+tp/*.exe
