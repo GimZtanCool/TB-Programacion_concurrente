@@ -12,3 +12,5 @@ pc2/*.exe
 tp/.qa/
 tp/.build/
 tp/*.exe
+.ai-prep/
+.ai-prepignore

@@ -61,6 +61,7 @@ proctype Closer() {
 
 proctype Coordinator() {
     byte id;
+    jobs_closed; /* Go enqueues and closes jobs before receiving results. */
     do
     :: results?id ->
         assert(id < JOBS);
