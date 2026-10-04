@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-01",
+  "remote": "https://github.com/GimZtanCool/TB-Programacion_concurrente",
+  "branch": "feature/pc2",
+  "commit": "0a3495740ae7c5827a2ad8095ef33677ba82519b",
+  "files": [
+    {
+      "file": "pc2/entrenamiento.go",
+      "sha256": "41b850533e6222b77124ecc562773e581d28e9e9f64fb5f16f430456194c230c"
+    },
+    {
+      "file": "pc2/tiempo_cpu_windows.go",
+      "sha256": "4a00817694abe495414b83377169f26101f52848a7d5e8852e631b08d0c105cf"
+    },
+    {
+      "file": "pc2/tiempo_cpu_otros.go",
+      "sha256": "5af448d7111126b863deadfbe652b474cffb2bc4d0dc4e183920f82a1011032e"
+    },
+    {
+      "file": "pc2/go.mod",
+      "sha256": "8b062a7fbd6e22c5f48dfa0c919d19df9439b375d3d93bc145cf30f5e4a6a7fd"
+    },
+    {
+      "file": "pc2/modelo_sincronizacion.pml",
+      "sha256": "29dffaf306f6135ddc029950004254ccf809ebe8c793ddd2d739fce77acd055c"
+    },
+    {
+      "file": "limpieza_paysim.ipynb",
+      "sha256": "a7f1c08a21de4369829f352e3aa2235df41e88b156c8c207614a6190301a8bb7"
+    }
+  ]
+}

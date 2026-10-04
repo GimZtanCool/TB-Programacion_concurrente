@@ -1,0 +1,54 @@
+$ spin -DWORKERS=3 -a modelo_tp.pml
+ltl completion: <> (finished)
+
+exit_code=0
+
+$ gcc -O2 -o pan pan.c
+
+exit_code=0
+
+$ ./pan -m100000 -w22 -a
+
+(Spin Version 6.5.2 -- 6 December 2019)
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	+ (completion)
+	assertion violations	+ (if within scope of claim)
+	acceptance   cycles 	+ (fairness disabled)
+	invalid end states	- (disabled by never claim)
+
+State-vector 100 byte, depth reached 156, errors: 0
+    47765 states, stored (95530 visited)
+   220067 states, matched
+   315597 transitions (= visited+matched)
+       24 atomic steps
+hash conflicts:       932 (resolved)
+
+Stats on memory usage (in Megabytes):
+    5.831	equivalent memory usage for states (stored*(State-vector + overhead))
+    3.899	actual memory usage for states (compression: 66.88%)
+         	state-vector as stored = 58 byte + 28 byte overhead
+   32.000	memory used for hash table (-w22)
+    5.341	memory used for DFS stack (-m100000)
+   41.149	total actual memory usage
+
+
+unreached in proctype Producer
+	(0 of 10 states)
+unreached in proctype Worker
+	(0 of 11 states)
+unreached in proctype Closer
+	(0 of 3 states)
+unreached in proctype Coordinator
+	(0 of 31 states)
+unreached in init
+	(0 of 13 states)
+unreached in claim completion
+	_spin_nvr.tmp:6, state 6, "-end-"
+	(1 of 6 states)
+
+pan: elapsed time 0.07 seconds
+pan: rate 1364714.3 states/second
+
+exit_code=0

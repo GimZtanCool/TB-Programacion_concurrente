@@ -1,0 +1,7 @@
+=== RUN   TestFullPaySim
+Chronological split: 5090096/1272524; scaler fitted on training rows only
+    entrenamiento_test.go:151: workers=1 epochs=5 TP=3731 FP=285109 FN=523
+    entrenamiento_test.go:151: workers=12 epochs=5 TP=3731 FP=285109 FN=523
+--- PASS: TestFullPaySim (27.62s)
+PASS
+ok  	cc65/pc2	28.888s

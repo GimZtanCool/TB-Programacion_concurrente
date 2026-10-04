@@ -1,0 +1,43 @@
+=== RUN   TestParseRowValidation
+=== RUN   TestParseRowValidation/amountNaN
+=== RUN   TestParseRowValidation/amount+Inf
+=== RUN   TestParseRowValidation/oldbalanceOrg-Inf
+=== RUN   TestParseRowValidation/amount-1
+=== RUN   TestParseRowValidation/step1.5
+=== RUN   TestParseRowValidation/typeOTHER
+=== RUN   TestParseRowValidation/nameDestX123
+=== RUN   TestParseRowValidation/nameDest
+=== RUN   TestParseRowValidation/isFraud2
+--- PASS: TestParseRowValidation (0.00s)
+    --- PASS: TestParseRowValidation/amountNaN (0.00s)
+    --- PASS: TestParseRowValidation/amount+Inf (0.00s)
+    --- PASS: TestParseRowValidation/oldbalanceOrg-Inf (0.00s)
+    --- PASS: TestParseRowValidation/amount-1 (0.00s)
+    --- PASS: TestParseRowValidation/step1.5 (0.00s)
+    --- PASS: TestParseRowValidation/typeOTHER (0.00s)
+    --- PASS: TestParseRowValidation/nameDestX123 (0.00s)
+    --- PASS: TestParseRowValidation/nameDest (0.00s)
+    --- PASS: TestParseRowValidation/isFraud2 (0.00s)
+=== RUN   TestDatasetValidation
+=== RUN   TestDatasetValidation/missing
+=== RUN   TestDatasetValidation/duplicate
+=== RUN   TestDatasetValidation/unordered
+=== RUN   TestDatasetValidation/empty
+=== RUN   TestDatasetValidation/singleclass
+--- PASS: TestDatasetValidation (0.28s)
+    --- PASS: TestDatasetValidation/missing (0.00s)
+    --- PASS: TestDatasetValidation/duplicate (0.00s)
+    --- PASS: TestDatasetValidation/unordered (0.05s)
+    --- PASS: TestDatasetValidation/empty (0.06s)
+    --- PASS: TestDatasetValidation/singleclass (0.16s)
+=== RUN   TestConcurrentEquivalence
+--- PASS: TestConcurrentEquivalence (0.05s)
+=== RUN   TestWorkersAndTrimmedMean
+--- PASS: TestWorkersAndTrimmedMean (0.00s)
+=== RUN   TestOutputProtectsDataset
+--- PASS: TestOutputProtectsDataset (0.01s)
+=== RUN   TestFullPaySim
+    entrenamiento_test.go:143: set TP_FULL_DATASET to the original PaySim CSV
+--- SKIP: TestFullPaySim (0.00s)
+PASS
+ok  	cc65/pc2	2.807s

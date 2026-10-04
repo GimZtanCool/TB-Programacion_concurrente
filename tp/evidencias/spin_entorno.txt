@@ -1,0 +1,25 @@
+$ spin -V
+Spin Version 6.5.2 -- 6 December 2019
+
+exit_code=0
+
+$ gcc --version
+gcc (Debian 12.2.0-14+deb12u1) 12.2.0
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+exit_code=0
+
+$ python3 --version
+Python 3.11.2
+
+exit_code=0
+
+$ uname -a
+Linux d9b5da46c413 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux
+
+exit_code=0
+
+modelo_tp.pml SHA256=9e2632fcd70ff7094c0f611290ac7e3f4fe377f3a1fdca0b7224d26e60671e6a

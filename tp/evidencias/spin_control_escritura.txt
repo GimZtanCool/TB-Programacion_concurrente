@@ -1,0 +1,124 @@
+$ spin -DWORKERS=2 -DBAD_WRITER -a modelo_tp.pml
+ltl completion: <> (finished)
+
+exit_code=0
+
+$ gcc -O2 -DSAFETY -DNOCLAIM -o pan pan.c
+
+exit_code=0
+
+$ ./pan -m100000 -w22
+pan:1: assertion violated (writers==1) (at depth 26)
+pan: wrote modelo_tp.pml.trail
+
+(Spin Version 6.5.2 -- 6 December 2019)
+Warning: Search not completed
+	+ Partial Order Reduction
+
+Full statespace search for:
+	never claim         	- (not selected)
+	assertion violations	+
+	cycle checks       	- (disabled by -DSAFETY)
+	invalid end states	+
+
+State-vector 84 byte, depth reached 75, errors: 1
+      892 states, stored
+      959 states, matched
+     1851 transitions (= stored+matched)
+        9 atomic steps
+hash conflicts:         0 (resolved)
+
+Stats on memory usage (in Megabytes):
+    0.095	equivalent memory usage for states (stored*(State-vector + overhead))
+    0.285	actual memory usage for states
+   32.000	memory used for hash table (-w22)
+    5.341	memory used for DFS stack (-m100000)
+   37.536	total actual memory usage
+
+
+
+pan: elapsed time 0.01 seconds
+
+exit_code=0
+
+$ spin -DWORKERS=2 -DBAD_WRITER -t -p -g modelo_tp.pml
+ltl completion: <> (finished)
+Starting Producer with pid 1
+  1:	proc  0 (:init::1) modelo_tp.pml:96 (state 1)	[(run Producer())]
+  2:	proc  0 (:init::1) modelo_tp.pml:98 (state 2)	[((id<2))]
+Starting Worker with pid 2
+  3:	proc  0 (:init::1) modelo_tp.pml:98 (state 3)	[(run Worker(id))]
+  4:	proc  0 (:init::1) modelo_tp.pml:98 (state 4)	[id = (id+1)]
+  5:	proc  0 (:init::1) modelo_tp.pml:98 (state 2)	[((id<2))]
+Starting Worker with pid 3
+  6:	proc  0 (:init::1) modelo_tp.pml:98 (state 3)	[(run Worker(id))]
+  7:	proc  0 (:init::1) modelo_tp.pml:98 (state 4)	[id = (id+1)]
+  8:	proc  0 (:init::1) modelo_tp.pml:99 (state 5)	[else]
+Starting Closer with pid 4
+  9:	proc  0 (:init::1) modelo_tp.pml:101 (state 10)	[(run Closer())]
+Starting Coordinator with pid 5
+ 10:	proc  0 (:init::1) modelo_tp.pml:102 (state 11)	[(run Coordinator())]
+ 11:	proc  1 (Producer:1) modelo_tp.pml:25 (state 1)	[((id<2))]
+ 12:	proc  1 (Producer:1) modelo_tp.pml:25 (state 2)	[jobs!id]
+		queue 1 (jobs): [0]
+ 13:	proc  1 (Producer:1) modelo_tp.pml:25 (state 3)	[id = (id+1)]
+		queue 1 (jobs): [0]
+ 14:	proc  1 (Producer:1) modelo_tp.pml:25 (state 1)	[((id<2))]
+		queue 1 (jobs): [0]
+ 15:	proc  3 (Worker:1) modelo_tp.pml:34 (state 1)	[jobs?id]
+		queue 1 (jobs): 
+ 16:	proc  3 (Worker:1) modelo_tp.pml:35 (state 2)	[assert(!(ready[id]))]
+		queue 1 (jobs): 
+ 17:	proc  3 (Worker:1) modelo_tp.pml:36 (state 3)	[ready[id] = 1]
+		queue 1 (jobs): 
+		ready[0] = 1
+		ready[1] = 0
+ 18:	proc  3 (Worker:1) modelo_tp.pml:39 (state 4)	[writers = (writers+1)]
+		queue 1 (jobs): 
+		writers = 1
+ 19:	proc  3 (Worker:1) modelo_tp.pml:40 (state 5)	[assert((writers==1))]
+		queue 1 (jobs): 
+ 20:	proc  1 (Producer:1) modelo_tp.pml:25 (state 2)	[jobs!id]
+		queue 1 (jobs): [1]
+ 21:	proc  1 (Producer:1) modelo_tp.pml:25 (state 3)	[id = (id+1)]
+		queue 1 (jobs): [1]
+ 22:	proc  1 (Producer:1) modelo_tp.pml:26 (state 4)	[else]
+		queue 1 (jobs): [1]
+ 23:	proc  2 (Worker:1) modelo_tp.pml:34 (state 1)	[jobs?id]
+		queue 1 (jobs): 
+ 24:	proc  2 (Worker:1) modelo_tp.pml:35 (state 2)	[assert(!(ready[id]))]
+		queue 1 (jobs): 
+ 25:	proc  2 (Worker:1) modelo_tp.pml:36 (state 3)	[ready[id] = 1]
+		queue 1 (jobs): 
+		ready[0] = 1
+		ready[1] = 1
+ 26:	proc  2 (Worker:1) modelo_tp.pml:39 (state 4)	[writers = (writers+1)]
+		queue 1 (jobs): 
+		writers = 2
+spin: modelo_tp.pml:40, Error: assertion violated
+spin: text of failed assertion: assert((writers==1))
+ 27:	proc  2 (Worker:1) modelo_tp.pml:40 (state 5)	[assert((writers==1))]
+		queue 1 (jobs): 
+spin: trail ends after 27 steps
+#processes: 6
+		queue 1 (jobs): 
+		jobs_closed = 0
+		results_closed = 0
+		ready[0] = 1
+		ready[1] = 1
+		consumed[0] = 0
+		consumed[1] = 0
+		workers_done = 0
+		received = 0
+		writers = 2
+		updates = 0
+		finished = 0
+ 27:	proc  5 (Coordinator:1) modelo_tp.pml:64 (state 1)
+ 27:	proc  4 (Closer:1) modelo_tp.pml:58 (state 1)
+ 27:	proc  3 (Worker:1) modelo_tp.pml:41 (state 6)
+ 27:	proc  2 (Worker:1) modelo_tp.pml:41 (state 6)
+ 27:	proc  1 (Producer:1) modelo_tp.pml:28 (state 9)
+ 27:	proc  0 (:init::1) modelo_tp.pml:104 (state 13) <valid end state>
+6 processes created
+
+exit_code=0

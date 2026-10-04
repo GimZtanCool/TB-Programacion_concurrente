@@ -1,0 +1,20 @@
+ea6baa3 | 2026-10-01T22:30:22-05:00 | SebasUPC | fix: align TP receive order with Go and pin verifier base image
+b60c590 | 2026-10-01T22:11:34-05:00 | SebasUPC | feat: verify TP synchronization and harden PaySim input handling
+0a34957 | 2026-09-28T15:09:10Z | copilot-swe-agent[bot] | Resolve README merge conflict markers
+8228a9c | 2026-09-28T15:08:38Z | copilot-swe-agent[bot] | Plan: resolve PR merge conflicts
+f5c0a30 | 2026-09-25T22:25:53-05:00 | GimZtanCool | Rename LEEME.md to README.md
+6787193 | 2026-09-25T22:25:13-05:00 | SebasUPC | chore: keep reports local and use Spanish filenames
+fe3a116 | 2026-09-24T22:06:47-05:00 | SebasUPC | chore: consolidate PC2 deliverables
+9216531 | 2026-09-24T21:45:23-05:00 | SebasUPC | feat: complete PC2 concurrent fraud detection
+b1c3c14 | 2026-09-24T20:43:44-05:00 | Sebatian | Merge pull request #3 from GimZtanCool/develop
+80a365d | 2026-09-13T21:22:25-05:00 | César Avalos | Merge pull request #2 from GimZtanCool/main
+a9fe0b5 | 2026-09-13T21:21:15-05:00 | César Avalos | Fix formatting and headings in README.md
+711b164 | 2026-09-13T20:57:47-05:00 | Nobody | Merge pull request #1 from GimZtanCool/nuevo-dataset
+40b3564 | 2026-09-13T20:56:24-05:00 | SebasUPC | chore: remover archivos CC65 del repositorio e ignorar en .gitignore
+8a9c4ca | 2026-09-13T20:43:11-05:00 | SebasUPC | docs: actualizar informe PC1 (.md y .docx) con análisis y limpieza de PaySim1
+193e755 | 2026-09-13T20:40:40-05:00 | SebasUPC | feat: migración a nuevo dataset PaySim1 (>6.3M registros), pipeline de limpieza y Git LFS
+e196833 | 2026-09-13T11:44:21-05:00 | Nobody | Add project documentation for fraud detectionReadem
+5e8e097 | 2026-09-13T11:37:20-05:00 | SebasUPC | Add dataset files
+9cd1c4e | 2026-09-13T11:37:00-05:00 | SebasUPC | dataset with git lfs
+5a1f43d | 2026-09-13T11:33:14-05:00 | SebasUPC | Dataset
+3e6bd6d | 2026-09-13T11:15:18-05:00 | SebasUPC | Initial commit

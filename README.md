@@ -79,7 +79,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 
 ## PC2: modelo, implementación y evaluación
 
-La implementación y las instrucciones para reproducir los resultados están en [pc2/](pc2/LEEME.md). Las mediciones individuales están en [pc2/mediciones.csv](pc2/mediciones.csv). El informe integrado se conserva localmente y está excluido de GitHub.
+La implementación y las instrucciones para reproducir los resultados están en [pc2/](pc2/README.md). Las mediciones individuales están en [pc2/mediciones.csv](pc2/mediciones.csv). El informe integrado se conserva localmente y está excluido de GitHub.
 
 | Configuración | Media recortada (ms) | Aceleración |
 | --- | ---: | ---: |
@@ -87,3 +87,7 @@ La implementación y las instrucciones para reproducir los resultados están en 
 | Grupo de workers, 2 | 135.617 | 1.942x |
 | Grupo de workers, 4 | 69.375 | 3.796x |
 | Grupo de workers, 8 | 39.880 | 6.604x |
+
+## TP Entregable 3
+
+La [carpeta TP](tp/README.md) contiene la verificación formal ejecutada con Spin, el informe IA de GAPs, el prompt estructurado y las evidencias de pruebas. Las correcciones conservan el algoritmo y las métricas funcionales de PC2. El Word integrado se mantiene localmente; la rama `feature/tp` queda preparada para revisión antes de publicarla e integrarla en `main`.
