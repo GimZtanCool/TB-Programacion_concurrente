@@ -1,5 +1,10 @@
-﻿CC65*
+# Informes de equipo: conservar localmente, fuera del repositorio.
+CC65*
 *.docx
 *.pdf
+pc2/INFORME_PC2.md
+pc2/Informe_CC65-PC2-202620_Equipo.pdf
+pc2/evidencia_ejecucion.png
 __pycache__/
 *.pyc
+pc2/*.exe

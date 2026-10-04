@@ -30,7 +30,7 @@ El dataset seleccionado corresponde a **PaySim1**, un simulador financiero basad
 
 ---
 
-## 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim_fraud.ipynb`)
+## 🛠️ 3. Pipeline de Limpieza y Preprocesamiento (`limpieza_paysim.ipynb`)
 
 El procedimiento implementado en el notebook sigue un flujo estricto y reproducible:
 
@@ -42,7 +42,7 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
    * Extracción de semántica del destinatario: nueva variable `dest_type` (`C` = Cliente particular, `M` = Comercio).
    * Eliminación de la bandera estática `isFlaggedFraud` (que sólo detectaba el 0.19% de los fraudes reales).
 3. **Tratamiento de Valores Atípicos (*Outliers*):**
-   * Recorte (*winsorizing*) sobre `amount` en el percentil 99.99 ($9,615,000 USD), mitigando inestabilidad numérica en gradientes.
+   * Recorte (*winsorizing*) sobre `amount` en el percentil 99.99 ($22,919,326.54 USD), mitigando inestabilidad numérica en gradientes.
 4. **Ingeniería de Características (*Feature Engineering*):**
    * **Discrepancias contables:** Cálculo de balances esperados vs reales:
      $$\text{errorBalanceOrig} = \text{newbalanceOrig} + \text{amount} - \text{oldbalanceOrg}$$
@@ -57,14 +57,14 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 7. **División Cronológica y Estandarización:**
    * Ordenamiento temporal estricto por `step`.
    * Split 80/20: **5,090,096 transacciones de entrenamiento** y **1,272,524 de prueba**, previniendo fuga de datos temporal (*temporal data leakage*).
-   * Estandarización `StandardScaler` ajustada sobre entrenamiento y aplicada a prueba sobre las **14 variables predictoras finales**.
+   * Estandarización `StandardScaler` ajustada sobre entrenamiento y aplicada a prueba sobre las **15 variables predictoras finales**.
 
 ---
 
 ## 4. Estructura del Repositorio
 
 ```text
-├── limpieza_paysim_fraud.ipynb     # Notebook con EDA, limpieza y exportación
+├── limpieza_paysim.ipynb     # Notebook con EDA, limpieza y exportación
 ├── paysim.csv                      # Dataset masivo (>6.36M filas, Git LFS)
 ├── data-limpia/                    # Muestras y salidas del preprocesamiento
 │   ├── paysim_sample_50k.csv       # Muestra de 50,000 registros procesados
@@ -74,3 +74,16 @@ El procedimiento implementado en el notebook sigue un flujo estricto y reproduci
 ├── .gitignore                      # Configuración de exclusión de Git
 └── README.md                       # Documentación del proyecto
 ```
+
+---
+
+## PC2: modelo, implementación y evaluación
+
+La implementación y las instrucciones para reproducir los resultados están en [pc2/](pc2/LEEME.md). Las mediciones individuales están en [pc2/mediciones.csv](pc2/mediciones.csv). El informe integrado se conserva localmente y está excluido de GitHub.
+
+| Configuración | Media recortada (ms) | Aceleración |
+| --- | ---: | ---: |
+| Secuencial | 263.355 | 1.000x |
+| Grupo de workers, 2 | 135.617 | 1.942x |
+| Grupo de workers, 4 | 69.375 | 3.796x |
+| Grupo de workers, 8 | 39.880 | 6.604x |
